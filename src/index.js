@@ -1,11 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Button from '@material-ui/core/Button';
+import Layout from "./components/Layout";
 
-const App = () => (
-  <Button variant="contained" color="primary">
-    Hello World
-  </Button>
-);
+const app = document.getElementById('app');
 
-ReactDOM.render(<App />, document.getElementById("index"));
+ReactDOM.render(<Layout/>, app);

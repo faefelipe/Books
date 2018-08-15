@@ -1,5 +1,6 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const devMode = process.env.NODE_ENV !== 'production'
 const webpack = require('webpack');
 
 const htmlWebpackPlugin = new HtmlWebPackPlugin({
@@ -19,19 +20,26 @@ module.exports = {
         }
       },  
       {
-        test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
-        })
-      }
+        test: /\.sass$|\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {  },
+          },          
+          { loader: 'sass-loader' },
+        ],
+      },
     ]
   },
   plugins: [
+    new MiniCssExtractPlugin({    
+      filename: devMode ? '[name].css' : '[name].[hash].css',
+      chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+    })
+  ],
+  plugins: [
     new webpack.optimize.ModuleConcatenationPlugin(),
-  ],
-  plugins: [        
-    new ExtractTextPlugin('style.css')    
-  ],
+  ], 
   plugins: [htmlWebpackPlugin]
 }
