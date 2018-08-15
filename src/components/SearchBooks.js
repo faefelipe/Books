@@ -1,8 +1,8 @@
 import React from "react";
-import Grid from '@material-ui/core/Grid';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
+import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 
   const styles = theme => ({
@@ -10,7 +10,20 @@ import { withStyles } from '@material-ui/core/styles';
       position: 'relative',    
     },        
     InputText: {
-      background: 'rgba(73,155,234,1)',    
+      background: 'rgba(73,155,234,1)',
+    },
+    layout: {
+      width: 'auto',
+      marginLeft: theme.spacing.unit * 3,
+      marginRight: theme.spacing.unit * 3,
+      [theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)]: {
+        width: 600,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+      },
+    },
+    btn: {
+      background: '#2196f3',
     }
   });
 
@@ -19,18 +32,25 @@ import { withStyles } from '@material-ui/core/styles';
 
     return (
       <div>
-        <Grid container direction="row" justify="center" alignItems="center">          
-        <FormControl margin="normal" required fullWidth>
-          <InputLabel htmlFor="search">Search</InputLabel>
-          <Input
-            name="search"
-            type="text"
-            id="search"
-            autoComplete="current-search"
-          />
-      </FormControl>
-          <input type="submit" className="btn btn-primary" value="Search Books"/>
-        </Grid>
+
+        <form className={classes.layout}>
+          
+          <FormControl margin="normal" required fullWidth>          
+            <InputLabel htmlFor="search">Search</InputLabel>
+            <Input
+              name="search"
+              type="text"
+              id="search"
+              autoComplete="current-search"                              
+            />                                        
+          </FormControl>
+
+          <FormControl required fullWidth>
+            <Button type="submit" className={classes.btn} value="Search Books">Search Books</Button>          
+          </FormControl>                          
+      
+        </form>
+    
       </div>
     );
   }
