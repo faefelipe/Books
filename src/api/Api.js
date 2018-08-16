@@ -1,35 +1,61 @@
 const API_KEY = 'AIzaSyCg0vlFL1fNdiEqB-13smgMKAHIq5oRZZk';
 
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import Button from "@material-ui/core/Button";
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Typography from '@material-ui/core/Typography';
+import BookResultsList from "../components/BookResultsList";
 
 export default class BooksUser extends Component {
 
-  loadBooks() {
-    const script = document.createElement("script");
-    script.src = "https://people.googleapis.com/$discovery/rest?version=v1";
-
-    script.onload = () => {
-      gapi.load('client', () => {
-        gapi.client.setApiKey(API_KEY);
-        gapi.client.load('books', 'v3', () => {
-          this.setState({ gapiReady: true });
-        });
-      });
+  constructor(props){
+    super(props);
+    this.state = {
+      books: [],
+      searchText: "",
     };
-
-    document.body.appendChild(script);
   }
-
-  componentDidMount() {
-    this.loadBooks();
+  handleKeyPress(event){
+    let self = this;
+    let value = event.target.value;
+    this.setState({searchText: value})
+    if(event.key === "Enter" && value){
+      self.search()
+    }
   }
-
-  render() {
-    if (this.state.gapiReady) {
-      return (
-        <h1>GAPI is loaded and ready to use.</h1>
-      );
-    };
+  search() {
+    let self = this
+    fetch('https://www.googleapis.com/books/v1/volumes?q=' + self.state.searchText, {
+        method: "GET",
+        dataType: 'json'
+      })
+      .then((r) => r.json())
+      .then(books => self.setState({books: books.items}) )
+  }
+  render() {    
+    return (
+      <div>                
+          <form>          
+            <FormControl margin="normal" required fullWidth>          
+              <InputLabel htmlFor="search">Search</InputLabel>
+              <Input
+                name="search"
+                type="text"
+                id="search"
+                autoComplete="current-search" 
+                onKeyPress={this.handleKeyPress.bind(this)}
+              />                                        
+            </FormControl>
+            <FormControl required fullWidth>            
+              <Button id="search" onClick={this.search.bind(this)}><Typography name='search' /> Search</Button>   
+            </FormControl>                                
+          </form>
+          
+          <BookResultsList books={this.state.books}></BookResultsList>     
+      </div>
+    );    
   }
 
 };

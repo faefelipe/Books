@@ -4,6 +4,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
+import Api from "../api/Api.js";
 
   const styles = theme => ({
     appBar: {
@@ -32,7 +33,7 @@ import { withStyles } from '@material-ui/core/styles';
 
     return (
       <div>
-
+        <Api />
         <form className={classes.layout}>
           
           <FormControl margin="normal" required fullWidth>          
