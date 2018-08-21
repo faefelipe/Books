@@ -1,45 +1,38 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const devMode = process.env.NODE_ENV !== 'production'
-const webpack = require('webpack');
-
-const htmlWebpackPlugin = new HtmlWebPackPlugin({
-  template: "./src/index.html",
-  filename: "./index.html"
-});
-
 module.exports = {
   module: {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,        
-        loader: 'babel-loader',
-        query: {
-          presets: ['react', 'es2015']        
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader"
         }
-      },  
-      {
-        test: /\.sass$|\.scss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {  },
-          },          
-          { loader: 'sass-loader' },
-        ],
       },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader",
+            options: { minimize: true }
+          }
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader"]
+      }
     ]
   },
   plugins: [
-    new MiniCssExtractPlugin({    
-      filename: devMode ? '[name].css' : '[name].[hash].css',
-      chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+    new HtmlWebPackPlugin({
+      template: "./src/index.html",
+      filename: "./index.html"
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[id].css"
     })
-  ],
-  plugins: [
-    new webpack.optimize.ModuleConcatenationPlugin(),
-  ], 
-  plugins: [htmlWebpackPlugin]
-}
+  ]
+};
