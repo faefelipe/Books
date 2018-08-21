@@ -16,8 +16,7 @@ class BookDetails extends Component {
       <Grid md={12}>
         <Grid>
             <Grid md={2}>
-                <img src={this.state.thumbnail} thumbnail />
-                <Rating rating={this.state.rating}/>                
+                <img src={this.state.thumbnail} thumbnail />                
                 <span className="title">{this.props.title}</span> 
             </Grid>
             <Grid md={10}>

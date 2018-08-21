@@ -37,11 +37,7 @@ const styles = theme => ({
   },
   cardMedia: {
     paddingTop: '56.25%', // 16:9
-  },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing.unit * 6,
-  },
+  },  
 });
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
