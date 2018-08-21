@@ -1,0 +1,21 @@
+figure {
+  display: flex;
+  justify-content: center;
+  min-height: 15rem;
+}
+.layout {
+  margin: 0 auto;
+  width: 900px;
+}
+.title {
+  padding-bottom: 10px;
+  max-height: 400px;
+}
+h2 {
+  min-height: 70px;
+  text-align: center; 
+}
+body {
+  line-height: 2;
+  margin: 0;
+}
