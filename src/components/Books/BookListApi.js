@@ -31,6 +31,7 @@ export default class BookListApi extends Component {
       })
       .then((r) => r.json())
       .then(books => self.setState({books: books.items}) )
+      .then(books => self.setState({books: books.totalItems}))
   }
   render() {    
     return (
