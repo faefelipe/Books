@@ -3,11 +3,13 @@ import React, { Component } from 'react';
 class Search extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      
-    };    
+    this.state = {};       
   }
-  
+  handleSubmit(event){
+    event.preventDefault();
+    this.props.onSearch(this.state.term);
+  }
+
   render() {
     return (
       <div className="App">

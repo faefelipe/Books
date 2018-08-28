@@ -9,18 +9,19 @@ class Book extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);    
   }
-  handleChange(event) {
-    this.setState({value: event.target.value});
+  onSearch(term){
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=${term}`, {
+        method: "GET",
+        dataType: 'json'
+    })
+    .then((r) => r.json())
+    .then(books => this.setState({books: books.items}) )
   }
 
-  handleSubmit(event) {
-    alert('OLa'  + this.state.value);
-    event.preventDefault();
-  }
   render() {
     return (
       <div className="App">
-        <Search />
+        <Search onSearch={this.onSearch.bind(this)} />
         <ListBooks />        
       </div>
     );
