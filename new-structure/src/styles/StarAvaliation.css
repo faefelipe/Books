@@ -1,0 +1,14 @@
+.star {
+  color: yellow;
+  border-radius: 50%;
+  height: 1em;
+  width: 1em;  
+}
+.star:hover {
+  color: gray;
+  cursor: pointer;
+}
+ul {
+  display: flex;
+  justify-content: center;  
+}
