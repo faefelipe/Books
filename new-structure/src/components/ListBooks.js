@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import BookCard from './BookCard';
+import Pagination from './Pagination';
 
 class ListBooks extends Component {  
   constructor(props){
@@ -16,7 +17,8 @@ class ListBooks extends Component {
               book => <BookCard key={book.id} {...book} />
             )
           }
-        </div> 
+        </div>
+        <Pagination />
       </div>
     );
   }

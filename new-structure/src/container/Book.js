@@ -6,7 +6,7 @@ class Book extends Component {
   constructor(props){
     super(props);
     this.state = {
-      books: [],       
+      books: [],          
     };            
   }
   componentWillMount() {
@@ -22,8 +22,8 @@ class Book extends Component {
       console.log('Using data from localStorage');
   }
 
-  onSearch(term){
-    fetch(`https://www.googleapis.com/books/v1/volumes?q=${term}`, {
+  onSearch(term, startIndex = 0, maxresults = 8){
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=${term}&startIndex=${startIndex}&maxResults=${maxresults}`, {
         method: "GET",
         dataType: 'json'
     })
@@ -36,11 +36,11 @@ class Book extends Component {
     localStorage.setItem('booksDate', Date.now());
   }
 
-  render() {
+  render() {    
     return (
       <div className="App">
         <Search onSearch={this.onSearch.bind(this)} />
-        <ListBooks books={this.state.books} />        
+        <ListBooks onSearch={this.onSearch.bind(this)} books={this.state.books} />            
       </div>
     );
   }
