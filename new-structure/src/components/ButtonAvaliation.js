@@ -13,7 +13,7 @@ class MyButton extends Component {
 
 class MyLabel extends Component {
   render() {
-    return <p>Cliquei no: {this.props.text}</p>
+    return <p>Avaliação do Livro: {this.props.text}</p>
   }
 }
 
@@ -35,11 +35,11 @@ class ButtonAvaliation extends Component {
       <div>
         <MyLabel text={this.state.labelText} />
         <ul>
-          <MyButton handleClick={this.setLabelText} label="Botão 1" />
-          <MyButton handleClick={this.setLabelText} label="Botão 2" />
-          <MyButton handleClick={this.setLabelText} label="Botão 3" />
-          <MyButton handleClick={this.setLabelText} label="Botão 4" />
-          <MyButton handleClick={this.setLabelText} label="Botão 5" />
+          <MyButton handleClick={this.setLabelText} label="Não Gostei" />
+          <MyButton handleClick={this.setLabelText} label="Regular" />
+          <MyButton handleClick={this.setLabelText} label="Bom" />
+          <MyButton handleClick={this.setLabelText} label="Muito Bom" />
+          <MyButton handleClick={this.setLabelText} label="Ótimo" />
         </ul>              
       </div>
     );
