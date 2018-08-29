@@ -6,7 +6,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import ButtonAvaliation from './ButtonAvaliation';
 
-
 class BookCard extends Component {
 
   render(){    
