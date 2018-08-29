@@ -4,7 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import StarAvaliation from './StarAvaliation';
+import ButtonAvaliation from './ButtonAvaliation';
 
 class BookCard extends Component {
 
@@ -13,7 +13,7 @@ class BookCard extends Component {
     return (    
       <Grid item xs={6} sm={6}>
         <Card>      
-          <StarAvaliation />
+          <ButtonAvaliation />          
           <CardMedia
             image={this.props.volumeInfo.imageLinks.thumbnail}
             title={this.props.volumeInfo.title}
