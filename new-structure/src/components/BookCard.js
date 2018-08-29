@@ -6,18 +6,19 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import ButtonAvaliation from './ButtonAvaliation';
 
+
 class BookCard extends Component {
 
   render(){    
     
     return (    
       <Grid item xs={6} sm={6}>
-        <Card>      
-          <ButtonAvaliation />          
-          <CardMedia
+        <Card>                          
+          <CardMedia            
             image={this.props.volumeInfo.imageLinks.thumbnail}
             title={this.props.volumeInfo.title}
-          />          
+          />        
+          <ButtonAvaliation />  
           <img src={this.props.volumeInfo.imageLinks.thumbnail} alt={this.props.volumeInfo.title}/>
           <CardContent className="title">
             <Typography gutterBottom variant="headline" component="h2">
